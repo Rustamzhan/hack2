@@ -56,88 +56,28 @@
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/Value2a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="25dp"
-            android:text="0" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/Value2b"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="25dp"
-            android:text="0" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-
-        <TextView
-            android:id="@+id/Value2c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="25dp"
-            android:text="0" />
-
-    </LinearLayout>
+        android:layout_marginBottom="10dp"/>
     <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/Value3a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="25dp"
-            android:text="0" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/Value3b"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="25dp"
-            android:text="0" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:id="@+id/linearLayout9"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/Value3c"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="25dp"
-            android:text="0" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:id="@+id/linearLayout10"
         android:layout_width="fill_parent"

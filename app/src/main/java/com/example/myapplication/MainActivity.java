@@ -36,37 +36,41 @@ public class MainActivity extends Activity implements SensorEventListener {
         private SensorManager msensorManager;
 
         private float[] accelerometerData;
-        private float[] accelerationData;
-        private float[] gyroscopData;
+//        private float[] accelerationData;
+//        private float[] gyroscopData;
         private int count = 0;
 //        Interpreter tflite;
-        float[][] mass_out = new float[1][6];
+        float[] mass_out = new float[6];
         float[] mass_in = new float[600];
         int[] tracker = new int[6];
         float prev = 0;
-        long    start;
+        long    start = 0;
         private TensorFlowClassifier classifier;
+        long first = 0;
 
 
+        public float x = 0;
+        public float y = 0;
+        public float z = 0;
 
         public Button button;
         public TextView View1a;
         public TextView View1b;
         public TextView View1c;
         public TextView View2a;
-        public TextView View2b;
-        public TextView View2c;
-        public TextView View3a;
-        public TextView View3b;
-        public TextView View3c;
+//        public TextView View2b;
+//        public TextView View2c;
+//        public TextView View3a;
+//        public TextView View3b;
+//        public TextView View3c;
         public TextView Viewres1;
         public TextView Viewres2;
         public TextView Viewres3;
         public TextView Viewres4;
         public TextView Viewres5;
         public TextView Viewres6;
-        public TextView Viewres7;
-    public TextView Viewres8;
+//        public TextView Viewres7;
+//    public TextView Viewres8;
 
         /** Called when the activity is first created. */
         @Override
@@ -77,18 +81,18 @@ public class MainActivity extends Activity implements SensorEventListener {
             classifier = new TensorFlowClassifier(getApplicationContext());
 
             accelerometerData = new float[3];
-            accelerationData = new float[3];
-            gyroscopData = new float[3];
+//            accelerationData = new float[3];
+//            gyroscopData = new float[3];
 
-        View1a = findViewById(R.id.Value1a);  //
+            View1a = findViewById(R.id.Value1a);  //
             View1b = findViewById(R.id.Value1b);  //
             View1c = findViewById(R.id.Value1c);  //
             View2a = findViewById(R.id.Value2a);  //
-            View2b = findViewById(R.id.Value2b);  //
-            View2c = findViewById(R.id.Value2c);
-            View3a = findViewById(R.id.Value3a);  //
-            View3b = findViewById(R.id.Value3b);  //
-            View3c = findViewById(R.id.Value3c);
+//            View2b = findViewById(R.id.Value2b);  //
+//            View2c = findViewById(R.id.Value2c);
+//            View3a = findViewById(R.id.Value3a);  //
+//            View3b = findViewById(R.id.Value3b);  //
+//            View3c = findViewById(R.id.Value3c);
 
             setContentView(R.layout.activity_main);
 
@@ -123,8 +127,8 @@ public class MainActivity extends Activity implements SensorEventListener {
 //            }
 
             msensorManager.registerListener(this, msensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_FASTEST);
-            msensorManager.registerListener(this, msensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION), SensorManager.SENSOR_DELAY_FASTEST);
-            msensorManager.registerListener(this, msensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_FASTEST);
+//            msensorManager.registerListener(this, msensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION), SensorManager.SENSOR_DELAY_FASTEST);
+//            msensorManager.registerListener(this, msensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_FASTEST);
         }
 
 
@@ -153,40 +157,45 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
 
         public void onSensorChanged(SensorEvent event) {
-            loadNewSensorData(event);
+//            loadNewSensorData(event);
+            accelerometerData = event.values.clone();
 
-            if ((View1a == null) || (View2a == null) || (View3a == null)) {
+            if (View1a == null) //|| (View2a == null) || (View3a == null))
+            {
                 View1a = findViewById(R.id.Value1a);  //
                 View1b = findViewById(R.id.Value1b);  // ���� ��������� ���� ��� ������ ���������
                 View1c = findViewById(R.id.Value1c);  //
-                View2a = findViewById(R.id.Value2a);  //
-                View2b = findViewById(R.id.Value2b);  // ���� ��������� ���� ��� ������ ���������
-                View2c = findViewById(R.id.Value2c);
-                View3a = findViewById(R.id.Value3a);  //
-                View3b = findViewById(R.id.Value3b);  // ���� ��������� ���� ��� ������ ���������
-                View3c = findViewById(R.id.Value3c);
+//                View2a = findViewById(R.id.Value2a);  //
+//                View2b = findViewById(R.id.Value2b);  // ���� ��������� ���� ��� ������ ���������
+//                View2c = findViewById(R.id.Value2c);
+//                View3a = findViewById(R.id.Value3a);  //
+//                View3b = findViewById(R.id.Value3b);  // ���� ��������� ���� ��� ������ ���������
+//                View3c = findViewById(R.id.Value3c);
             }
 
             View1a.setText(String.valueOf(accelerometerData[0]));
             View1b.setText(String.valueOf(accelerometerData[1]));
             View1c.setText(String.valueOf(accelerometerData[2]));
-            View2a.setText(String.valueOf(accelerationData[0]));
-            View2b.setText(String.valueOf(accelerationData[1]));
-            View2c.setText(String.valueOf(accelerationData[2]));
-            View3a.setText(String.valueOf(gyroscopData[0]));
-            View3b.setText(String.valueOf(gyroscopData[1]));
-            View3c.setText(String.valueOf(gyroscopData[2]));
+//            View2a.setText(String.valueOf(accelerationData[0]));
+//            View2b.setText(String.valueOf(accelerationData[1]));
+//            View2c.setText(String.valueOf(accelerationData[2]));
+//            View3a.setText(String.valueOf(gyroscopData[0]));
+//            View3b.setText(String.valueOf(gyroscopData[1]));
+//            View3c.setText(String.valueOf(gyroscopData[2]));
 
             if (count == 199) {
                 count = 0;
-                long first = System.currentTimeMillis();
+                View2a = findViewById(R.id.Value2a);
+
+                View2a.setText(String.valueOf(System.currentTimeMillis() - first));
+                first = System.currentTimeMillis();
 //                tflite.run(mass_in, mass_out);
-                mass_out[0] = classifier.predictProbabilities(mass_in);
-                int max = find_max(mass_out[0]);
-                if (prev != mass_out[0][max] && (System.currentTimeMillis()-start) > 1000) {
+                mass_out = classifier.predictProbabilities(mass_in);
+                int max = find_max(mass_out);
+                if (prev != mass_out[max] && (System.currentTimeMillis()-start) > 500) {
                     tracker[max]++;
                     start = System.currentTimeMillis();
-                    if (max != 3) prev = mass_out[0][max];
+                    prev = mass_out[max];
               }
 //                first = System.currentTimeMillis() - first;
 //                Viewres7 = findViewById(R.id.Valueres7);
@@ -208,6 +217,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 
             } else {
                 int ind = count;
+                if (Math.abs(x - accelerometerData[0]) < 0.06 && Math.abs(y - accelerometerData[1]) < 0.06
+                        && Math.abs(z-accelerometerData[2]) < 0.6)
+                    return ;
                 mass_in[ind] = accelerometerData[0];
                 mass_in[ind + 200] = accelerometerData[1];
                 mass_in[ind + 400] = accelerometerData[2];
@@ -225,6 +237,9 @@ public class MainActivity extends Activity implements SensorEventListener {
 //                        String.valueOf(gyroscopData[2]) + "\n";
 
             }
+            x = accelerometerData[0];
+            y = accelerometerData[1];
+            z = accelerometerData[2];
         }
 
     private int find_max(float[] floats) {
@@ -239,20 +254,20 @@ public class MainActivity extends Activity implements SensorEventListener {
             return j;
     }
 
-    private void loadNewSensorData(SensorEvent event) {
-
-            final int type = event.sensor.getType();
-
-            if (type == Sensor.TYPE_LINEAR_ACCELERATION) {
-                accelerationData = event.values.clone();
-            }
-
-            if (type == Sensor.TYPE_ACCELEROMETER) {
-                accelerometerData = event.values.clone();
-            }
-
-            if (type == Sensor.TYPE_GYROSCOPE) {
-                gyroscopData = event.values.clone();
-            }
-        }
+//    private void loadNewSensorData(SensorEvent event) {
+//
+//            final int type = event.sensor.getType();
+//
+////            if (type == Sensor.TYPE_LINEAR_ACCELERATION) {
+////                accelerationData = event.values.clone();
+////            }
+//
+//            if (type == Sensor.TYPE_ACCELEROMETER) {
+//                accelerometerData = event.values.clone();
+//            }
+//
+////            if (type == Sensor.TYPE_GYROSCOPE) {
+////                gyroscopData = event.values.clone();
+////            }
+//        }
 }
